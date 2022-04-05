@@ -12,7 +12,7 @@ exports.backup = async (project) => {
   const dump = await dumpTo(folder);
   const zip = await zipFolder(dump);
   await deleteDir(zip);
-  const file = await saveSharepoint(project, zip);
+  const file = await saveSharepoint(zip);
   const success = await deleteZipFile(file);
   console.log({ success });
 };

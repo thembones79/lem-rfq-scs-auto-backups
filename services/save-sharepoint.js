@@ -2,9 +2,12 @@ const fs = require("fs");
 const { spsave } = require("spsave");
 const { coreOptions, creds } = require("./secrets");
 
-exports.saveSharepoint = async (project, file) => {
+exports.saveSharepoint = async (file) => {
+  const project = file.substring(0, file.length - 15);
+  const year = file.substring(file.length - 14, file.length - 10);
+  const month = file.substring(file.length - 10, file.length - 8);
   const fileOptions = {
-    folder: `Shared Documents/backups/${project}`,
+    folder: `Shared Documents/backups/${project}/${year}/${month}`,
     fileName: `${file}.zip`,
     fileContent: fs.readFileSync(`${file}.zip`),
   };
